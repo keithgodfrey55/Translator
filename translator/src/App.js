@@ -6,11 +6,13 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Validate from './validate.js';
 
+export GOOGLE_APPLICATION_CREDENTIALS="/Users/michaelcasey/mec-assignment-10/translator/src/secrets.json";
+
 // Imports the Google Cloud client library
 const {Translate} = require('@google-cloud/translate').v2;
 
 // Creates a client
-const translate = new Translate();
+const translate = new Translate({});
 
 /**
  * TODO(developer): Uncomment the following lines before running the sample.
