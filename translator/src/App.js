@@ -6,7 +6,12 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Validate from './validate.js';
 
-export GOOGLE_APPLICATION_CREDENTIALS="/Users/michaelcasey/mec-assignment-10/translator/src/secrets.json";
+//export GOOGLE_APPLICATION_CREDENTIALS="/Users/michaelcasey/mec-assignment-10/translator/src/secrets.json";
+
+
+class App extends React.Component{
+  constructor(props){
+    const projectId = 'YOUR PROJECT_ID';
 
 // Imports the Google Cloud client library
 const {Translate} = require('@google-cloud/translate').v2;
@@ -17,8 +22,8 @@ const translate = new Translate({});
 /**
  * TODO(developer): Uncomment the following lines before running the sample.
  */
- const text = 'The text to translate, e.g. Hello, world!';
- const target = 'The target language, e.g. ru';
+ const text = 'Hello, world!';
+ const target = 'ru';
 
 async function translateText() {
   // Translates the text into the target language. "text" can be a string for
@@ -31,10 +36,8 @@ async function translateText() {
     console.log(`${text[i]} => (${target}) ${translation}`);
   });
 }
-
 translateText();
-class App extends React.Component{
-  constructor(props){
+
     
     super(props);
     this.state={
