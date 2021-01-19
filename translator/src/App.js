@@ -9,9 +9,6 @@ import CREDENTIALS from "./credentials.json";
 const { Translate } = require("@google-cloud/translate").v2;
 
 async function translateText(translate, text, target, state) {
-  // Translates the text into the target language. "text" can be a string for
-  // translating a single piece of text, or an array of strings for translating
-  // multiple texts.
   let [translations] = await translate.translate(text, target);
   translations = Array.isArray(translations) ? translations : [translations];
   state.text.output = translations[0];
@@ -35,8 +32,7 @@ class App extends React.Component {
     let state = this.state;
     state.text.error = Validate(this.state.text.value);
     translateText(translate, text, target, state);
-    console.log(state)
-    // this.setState(state);
+    
   }
   
   submitForm(event) {
@@ -84,13 +80,6 @@ class App extends React.Component {
               </Button>
             </form>
             <p>{this.state.text.output}</p>
-            {/* <TextField 
-      fullWidth
-       variant="outlined" 
-       value={this.state.text.output}
-       helperText={this.state.text.error}
-       error={this.state.text.error !==""} 
-       /> */}
           </Grid>
         </Grid>
       </div>
