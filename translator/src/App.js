@@ -5,27 +5,13 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Validate from './validate.js';
-
-//export GOOGLE_APPLICATION_CREDENTIALS="/Users/michaelcasey/mec-assignment-10/translator/src/secrets.json";
-
-
-class App extends React.Component{
-  constructor(props){
-    const projectId = 'YOUR PROJECT_ID';
-
-// Imports the Google Cloud client library
+import CREDENTIALS from './credentials.json';
 const {Translate} = require('@google-cloud/translate').v2;
 
-// Creates a client
-const translate = new Translate({});
 
-/**
- * TODO(developer): Uncomment the following lines before running the sample.
- */
- const text = 'Hello, world!';
- const target = 'ru';
+//export GOOGLE_APPLICATION_CREDENTIALS="/Users/michaelcasey/mec-assignment-10/translator/secrets.json"
 
-async function translateText() {
+async function translateText(translate, text, target) {
   // Translates the text into the target language. "text" can be a string for
   // translating a single piece of text, or an array of strings for translating
   // multiple texts.
@@ -36,7 +22,10 @@ async function translateText() {
     console.log(`${text[i]} => (${target}) ${translation}`);
   });
 }
-translateText();
+
+class App extends React.Component{
+  constructor(props){
+    
 
     
     super(props);
@@ -48,6 +37,22 @@ translateText();
     }
   }
   submitForm(event){
+    
+
+// Imports the Google Cloud client library
+
+
+// Creates a client
+const translate = new Translate({credentials:CREDENTIALS});
+
+/**
+ * TODO(developer): Uncomment the following lines before running the sample.
+ */
+ const text = 'Hello, world!';
+ const target = 'es';
+
+
+translateText(translate, text, target);
     event.preventDefault();
     let state = this.state;
     state.text.error = Validate(this.state.text.value);
